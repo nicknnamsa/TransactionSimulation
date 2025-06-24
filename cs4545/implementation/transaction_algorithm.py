@@ -37,6 +37,7 @@ class TransactionAlgorithm(DistributedAlgorithm):
         self.tx_seen: set[str] = set()
 
         self.spent_bloom = BloomFilter(capacity=10000, error_rate=0.001)
+        self.double_spend_events = 0
 
     def init_genesis(self):
         for nid in range(self.number_nodes):
@@ -54,6 +55,7 @@ class TransactionAlgorithm(DistributedAlgorithm):
             return
         self.ignore_nodes.add(node_id)
         self.termination_msgs[node_id] += 1
+        self.double_spend_events += 1
 
         for p in self.get_peers():
             self.ez_send(p, TerminationMessage(node_id))

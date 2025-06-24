@@ -210,13 +210,23 @@ class DistributedAlgorithm(Community):
     def save_node_stats(self):
         p = Path(self.stat_file)
         p.parent.mkdir(parents=True, exist_ok=True)
+
         stats = {
             "number_transaction": self.transaction_counter,
             "bytes_sent": self._message_history.bytes_sent(),
-            "latency": self.last_message_time - self.start_time
+            "latency": self.last_message_time - self.start_time,
         }
-        # Save stats object as yaml
+
+        if hasattr(self, "utxos"):
+            stats["utxo_pool_size"] = len(self.utxos)
+            stats["mem_utxos_bytes"] = sizeof(self.utxos)
+        if hasattr(self, "spent_bloom"):
+            stats["bloom_items"] = len(self.spent_bloom)
+        if hasattr(self, "tx_seen"):
+            stats["tx_seen"] = len(self.tx_seen)
+        if hasattr(self, "double_spend_events"):
+            stats["double_spend_events"] = self.double_spend_events
+
         with open(p, "w") as f:
             yaml.dump(stats, f)
-            
-        # print(f"[Node {self.node_id}] Node stats saved to {p} in {p.resolve()}")
+

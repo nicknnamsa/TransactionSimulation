@@ -1,3 +1,8 @@
-bytes_sent: 5184
-latency: 0.07281970977783203
-number_transaction: 81
+bloom_items: 1
+bytes_sent: 5616
+double_spend_events: 1
+latency: 0.15910577774047852
+mem_utxos_bytes: 1930
+number_transaction: 91
+tx_seen: 2
+utxo_pool_size: 12
