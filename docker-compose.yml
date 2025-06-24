@@ -1,0 +1,173 @@
+networks:
+  vpcbr:
+    driver: bridge
+    ipam:
+      config:
+      - gateway: 192.168.56.1
+        subnet: 192.168.56.0/24
+      driver: default
+services:
+  node0:
+    build: .
+    environment:
+      ALGORITHM: transaction
+      EMPTY: null
+      LOCATION: cs4545
+      PID: 0
+      STARTER: 'true'
+      TOPOLOGY: topologies/fully_connected_10graph.yaml
+    networks:
+      vpcbr:
+        ipv4_address: 192.168.56.10
+    ports:
+    - 9090:9090
+    volumes:
+    - ./output:/home/python/output
+  node1:
+    build: .
+    environment:
+      ALGORITHM: transaction
+      EMPTY: null
+      LOCATION: cs4545
+      PID: 1
+      STARTER: 'false'
+      TOPOLOGY: topologies/fully_connected_10graph.yaml
+    networks:
+      vpcbr:
+        ipv4_address: 192.168.56.11
+    ports:
+    - 9091:9091
+    volumes:
+    - ./output:/home/python/output
+  node2:
+    build: .
+    environment:
+      ALGORITHM: transaction
+      EMPTY: null
+      LOCATION: cs4545
+      PID: 2
+      STARTER: 'false'
+      TOPOLOGY: topologies/fully_connected_10graph.yaml
+    networks:
+      vpcbr:
+        ipv4_address: 192.168.56.12
+    ports:
+    - 9092:9092
+    volumes:
+    - ./output:/home/python/output
+  node3:
+    build: .
+    environment:
+      ALGORITHM: transaction
+      EMPTY: null
+      LOCATION: cs4545
+      PID: 3
+      STARTER: 'false'
+      TOPOLOGY: topologies/fully_connected_10graph.yaml
+    networks:
+      vpcbr:
+        ipv4_address: 192.168.56.13
+    ports:
+    - 9093:9093
+    volumes:
+    - ./output:/home/python/output
+  node4:
+    build: .
+    environment:
+      ALGORITHM: transaction
+      EMPTY: null
+      LOCATION: cs4545
+      PID: 4
+      STARTER: 'false'
+      TOPOLOGY: topologies/fully_connected_10graph.yaml
+    networks:
+      vpcbr:
+        ipv4_address: 192.168.56.14
+    ports:
+    - 9094:9094
+    volumes:
+    - ./output:/home/python/output
+  node5:
+    build: .
+    environment:
+      ALGORITHM: transaction
+      EMPTY: null
+      LOCATION: cs4545
+      PID: 5
+      STARTER: 'false'
+      TOPOLOGY: topologies/fully_connected_10graph.yaml
+    networks:
+      vpcbr:
+        ipv4_address: 192.168.56.15
+    ports:
+    - 9095:9095
+    volumes:
+    - ./output:/home/python/output
+  node6:
+    build: .
+    environment:
+      ALGORITHM: transaction
+      EMPTY: null
+      LOCATION: cs4545
+      PID: 6
+      STARTER: 'false'
+      TOPOLOGY: topologies/fully_connected_10graph.yaml
+    networks:
+      vpcbr:
+        ipv4_address: 192.168.56.16
+    ports:
+    - 9096:9096
+    volumes:
+    - ./output:/home/python/output
+  node7:
+    build: .
+    environment:
+      ALGORITHM: transaction
+      EMPTY: null
+      LOCATION: cs4545
+      PID: 7
+      STARTER: 'false'
+      TOPOLOGY: topologies/fully_connected_10graph.yaml
+    networks:
+      vpcbr:
+        ipv4_address: 192.168.56.17
+    ports:
+    - 9097:9097
+    volumes:
+    - ./output:/home/python/output
+  node8:
+    build: .
+    environment:
+      ALGORITHM: transaction
+      EMPTY: null
+      LOCATION: cs4545
+      PID: 8
+      STARTER: 'false'
+      TOPOLOGY: topologies/fully_connected_10graph.yaml
+    networks:
+      vpcbr:
+        ipv4_address: 192.168.56.18
+    ports:
+    - 9098:9098
+    volumes:
+    - ./output:/home/python/output
+  node9:
+    build: .
+    environment:
+      ALGORITHM: transaction
+      EMPTY: null
+      LOCATION: cs4545
+      PID: 9
+      STARTER: 'false'
+      TOPOLOGY: topologies/fully_connected_10graph.yaml
+    networks:
+      vpcbr:
+        ipv4_address: 192.168.56.19
+    ports:
+    - 9099:9099
+    volumes:
+    - ./output:/home/python/output
+version: '3.7'
+x-common-variables:
+  EMPTY: null
+  TOPOLOGY: topologies/fully_connected_10graph.yaml
